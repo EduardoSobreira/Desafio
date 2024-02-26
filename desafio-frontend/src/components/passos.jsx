@@ -1,11 +1,11 @@
 import React from 'react';
 import { Steps } from 'antd';
-import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import '../estilos/customStep.css'
 
 const { Step } = Steps;
 
-const CustomSteps = () => {
+const Passos = () => {
     return (
         <div className="app">
             <Steps direction={"horizontal"}>
@@ -23,4 +23,4 @@ const CustomSteps = () => {
     );
 };
 
-export default CustomSteps;
+export default Passos;

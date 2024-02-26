@@ -7,6 +7,26 @@ body {
   flex-direction: row;
 }
 
+/* O acesso abaixo é um generico pra sempre definir o display flex */
+.d-flex {
+  display: flex;
+}
+
+/* aqui é pra definir a direção do display flex como row ( "linha" ) */
+.flex-row {
+  flex-direction: row;
+}
+
+/* aqui é pra definir a direção do display flex como column ( "Coluna" ) */
+.flex-column {
+  flex-direction: column;
+}
+
+.mt-5 {
+  margin-top: 1rem;
+}
+
+
 .app {
   margin: 0 auto;
   background-color: white;

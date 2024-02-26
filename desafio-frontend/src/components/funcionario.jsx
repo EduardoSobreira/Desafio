@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Switch, Form, Input, Button, Checkbox } from 'antd';
+import '../estilos/funcionario.css' // Sempre que tu criar uma folha de estilo css personalizada
+// pro componente tem que importar ela aqui, desse jeito igual foi feito aqui
+
 
 const MyForm = () => {
     const [switchChecked, setSwitchChecked] = useState(false);
@@ -49,6 +52,7 @@ const MyForm = () => {
 
                 </Form>
             )}
+
 
             {switchChecked && (
                 <div>
