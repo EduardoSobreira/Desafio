@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space} from 'antd';
-import '../estilos/funcionario.css' // Sempre que tu criar uma folha de estilo css personalizada
-// pro componente tem que importar ela aqui, desse jeito igual foi feito aqui
-
+import '../estilos/funcionario.css'
 
 function UploadOutlined() {
     return null;
@@ -12,7 +10,7 @@ function ArrowLeftOutlined() {
     return null;
 }
 
-const Formulario = () => {
+const CadastrarFuncionarioComponent = () => {
     const [switchChecked, setSwitchChecked] = useState(false);
     const [checkboxChecked, setCheckboxChecked] = useState(false);
     const [formGroupVisible, setFormGroupVisible] = useState(false);
@@ -20,14 +18,14 @@ const Formulario = () => {
     const handleSwitchChange = (checked) => {
         setSwitchChecked(checked);
         if (!checked) {
-            setCheckboxChecked(false); // Se o switch for desativado, desativa também a checkbox
-            setFormGroupVisible(false); // Esconde o formGroup quando o switch é desativado
+            setCheckboxChecked(false);
+            setFormGroupVisible(false);
         }
     };
 
     const handleCheckboxChange = (e) => {
         setCheckboxChecked(e.target.checked);
-        setFormGroupVisible(!e.target.checked); // Exibe o formGroup apenas se a checkbox for desmarcada
+        setFormGroupVisible(!e.target.checked);
     };
 
     const onFinish = (values) => {
@@ -167,4 +165,4 @@ const Formulario = () => {
     );
 };
 
-export default Formulario;
+export default CadastrarFuncionarioComponent;

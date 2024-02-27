@@ -4,7 +4,7 @@ import {ProfileOutlined, FormOutlined, ApartmentOutlined, BellOutlined, HistoryO
 import '../estilos/menu.css'
 const {SubMenu} = Menu;
 
-class MenuCustom extends React.Component {
+class MenuComponent extends React.Component {
     state = {
         collapsed: false,
     };
@@ -18,6 +18,7 @@ class MenuCustom extends React.Component {
     render() {
         return (
             <div className="menu-container">
+                <div className={'mt-10 enfeite-menu'}/>
                 <Menu inlineCollapsed={this.state.collapsed}
                 >
                     <Menu.Item key="1" icon={<ProfileOutlined/>}>
@@ -34,4 +35,4 @@ class MenuCustom extends React.Component {
     }
 }
 
-export default MenuCustom;
+export default MenuComponent;

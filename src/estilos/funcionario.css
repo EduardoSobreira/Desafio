@@ -126,3 +126,9 @@
     border: 1px solid #4fa1c2;
     border-radius: 8px;
 }
+
+.custom-button {
+    border: 1px solid #4fa1c2;
+    background-color: transparent;
+    color: #4fa1c2;
+}

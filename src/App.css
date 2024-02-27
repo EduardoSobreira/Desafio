@@ -27,6 +27,11 @@ body {
   margin-top: 1rem;
 }
 
+.mt-10 {
+  margin-top: 2rem;
+}
+
+
 
 .app {
   margin: 0 auto;
@@ -102,4 +107,28 @@ input, select {
 
 .w-60 {
   width: 60%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.ml-5 {
+  margin-left: 1rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.h-40 {
+  height: 40px;
+}
+
+.m-l-auto {
+  margin-left: auto;
+}
+
+.m-h-500 {
+  max-height: 500px;
 }
