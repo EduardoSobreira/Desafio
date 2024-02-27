@@ -1,5 +1,6 @@
 body {
   background-color: #DBDBDB;
+  margin: 0;
 }
 
 .principal {
@@ -7,17 +8,17 @@ body {
   flex-direction: row;
 }
 
-/* O acesso abaixo é um generico pra sempre definir o display flex */
+
 .d-flex {
   display: flex;
 }
 
-/* aqui é pra definir a direção do display flex como row ( "linha" ) */
+
 .flex-row {
   flex-direction: row;
 }
 
-/* aqui é pra definir a direção do display flex como column ( "Coluna" ) */
+
 .flex-column {
   flex-direction: column;
 }
@@ -85,3 +86,20 @@ input, select {
   width: 100%;
 }
 
+.container {
+  width: 100%;
+  padding: 25px;
+}
+
+.conteudo-principal {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-60 {
+  width: 60%;
+}

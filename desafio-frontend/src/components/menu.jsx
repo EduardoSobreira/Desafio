@@ -1,7 +1,7 @@
 import React from 'react';
 import {Menu} from 'antd';
 import {ProfileOutlined, FormOutlined, ApartmentOutlined, BellOutlined, HistoryOutlined, UserOutlined} from '@ant-design/icons';
-
+import '../estilos/menu.css'
 const {SubMenu} = Menu;
 
 class MenuCustom extends React.Component {
@@ -17,7 +17,7 @@ class MenuCustom extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="menu-container">
                 <Menu inlineCollapsed={this.state.collapsed}
                 >
                     <Menu.Item key="1" icon={<ProfileOutlined/>}>

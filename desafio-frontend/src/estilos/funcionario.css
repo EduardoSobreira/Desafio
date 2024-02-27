@@ -3,4 +3,126 @@
     padding: 20px;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+
+}
+
+.form-container {
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+    margin-left: 1rem;
+}
+
+.ant-card-head {
+    background-color: #4fa1c2 !important;
+    color: white  !important;
+    font-size: 2rem  !important;
+}
+
+.descricao {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.form-header {
+    margin-bottom: 20px;
+}
+
+
+.descricao .ant-form-item {
+    width: calc(50% - 12px);
+    margin-bottom: 24px;
+
+}
+
+.descricao .ant-form-horizontal{
+    display: contents;
+    text-align: -webkit-center;
+
+}
+
+.descricao .ant-form-item-label {
+    width: 30%;
+    text-align: right;
+    padding-right: 10px;
+    color: #4fa1c2;
+
+}
+
+.descricao .ant-form-item-control {
+    width: 70%;
+    border: 1px solid #4fa1c2;
+    border-radius: 7px;
+}
+
+.descricao .ant-radio-wrapper {
+    color: black;
+}
+
+.descricao .ant-select {
+    border-color: #5c9beb;
+}
+
+.epi {
+    display: block;
+    flex-wrap: wrap;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.epi .form-item {
+    margin-bottom: 10px;
+
+}
+
+
+.epi .selecionar-atividade {
+    display: flex;
+    flex-direction: row;
+}
+
+.epi .ant-form-horizontal {
+    display: contents;
+}
+
+.epi .selecionar-epi {
+    display: flex;
+    flex-direction: row;
+}
+
+.epi .add-atividade {
+    margin-top: 10px;
+}
+
+.epi .docs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+}
+
+
+.epi .ant-form-item-control{
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+}
+
+.custom-buttom{
+    background-color: white;
+    color: #4fa1c2;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+}
+
+.custom-adicionar {
+    margin-left: 10px;
+    background-color: white;
+    color: #4fa1c2;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
 }

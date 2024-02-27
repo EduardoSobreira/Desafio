@@ -1,0 +1,15 @@
+.ant-menu {
+    background-color: #4fa1c2 !important;
+    min-height: 500px !important;
+    width: 70px;
+    height: 768px;
+
+
+}
+
+.ant-menu-item {
+    color: #4fa1c2 !important;
+    background-color: #DDDDDD;
+
+}
+
