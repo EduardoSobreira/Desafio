@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Button, Card, Dropdown, Menu, message, Space, Spin, Tag} from "antd";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, Dropdown, Menu, message, Space, Spin, Switch, Tag} from "antd";
 import '../estilos/funcionario.css'
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,6 +13,8 @@ const FuncionariosComponent = () => {
     let funcionarios = useSelector(state => state.funcionario.funcionarios);
     const error = useSelector(state => state.funcionario.error);
     const loading = useSelector(state => state.funcionario.loading);
+
+    const [etapaConcluida, setEtapaConcluida] = useState(false);
 
     useEffect(() => {
         dispatch(fetchFuncionarios());
@@ -52,6 +54,10 @@ const FuncionariosComponent = () => {
         </Menu>
     );
 
+    const handleSwitchChange = (checked) => {
+        setEtapaConcluida(checked);
+    }
+
     return (
         <Card
             title={
@@ -88,7 +94,7 @@ const FuncionariosComponent = () => {
                              style={{backgroundColor: funcionario.ativo ? '#E0ECF2' : '#F2F2F2'}}>
                             <div className={'w-100 funcionario-list-title'}>{funcionario.nome}</div>
 
-                            <Space size={[0, 8]} wrap>
+                            <Space className="info-funcionario" size={[0, 8]} wrap>
                                 <Tag color="#4096ff">{funcionario.cpf}</Tag>
                                 <Tag color="#4096ff">{funcionario.ativo ? 'Ativo' : 'Inativo'}</Tag>
                                 <Tag color="#4096ff">{funcionario.cargo}</Tag>
@@ -105,6 +111,12 @@ const FuncionariosComponent = () => {
                     </div>
                 );
             })}
+            <div className="switch-footer" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+                <span>Etapa concluída?</span>
+                <Switch checked={etapaConcluida} onChange={handleSwitchChange} checkedChildren="Sim"
+                        unCheckedChildren="Não"/>
+
+            </div>
         </Card>
     )
 };

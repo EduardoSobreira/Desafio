@@ -200,7 +200,8 @@ const CadastrarFuncionarioComponent = () => {
             <Form>
                 <div className="form-header">
                     <Form.Item label="O trabalhador está inativo ou ativo?">
-                        <Switch className={'m-l-auto'} checked={switchChecked} onChange={handleSwitchChange}/>
+                        <Switch className={'m-l-auto'} checked={switchChecked} onChange={handleSwitchChange} checkedChildren="Ativo"
+                                unCheckedChildren="inativo"/>
                     </Form.Item>
                 </div>
 
