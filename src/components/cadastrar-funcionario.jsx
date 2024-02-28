@@ -110,7 +110,7 @@ const CadastrarFuncionarioComponent = () => {
 
                         <div className={'d-flex flex-column'}>
                             <label>Informe o Número do CA: </label>
-                            <Input onChange={(value) => handleEpiChange(index, 'ca', value)}/>
+                            <Input onChange={(event) => handleEpiChange(index, 'ca', event.target.value)}/>
                         </div>
 
 
@@ -120,7 +120,8 @@ const CadastrarFuncionarioComponent = () => {
 
                     <div className={'mt-5 w-100 p-5-px'}>
                         <Button
-                            className="w-100 custom-buttom" type="primary" onClick={handleAddEpi}>Adicionar outra  atividade</Button>
+                            className="w-100 custom-buttom" type="primary" onClick={handleRemoveEpi}>Excluir
+                             atividade</Button>
                     </div>
                 </div>
 
@@ -199,6 +200,12 @@ const CadastrarFuncionarioComponent = () => {
                             {!checkboxChecked && switchChecked && (
                                 renderEpiInputs()
                             )}
+
+                            <div className={'mt-5 w-100 p-5-px'}>
+                                <Button
+                                    className="w-100 custom-buttom" type="primary" onClick={handleAddEpi}>Adicionar
+                                    outra atividade</Button>
+                            </div>
                         </div>
 
                         <div className="container-epi mt-5">
