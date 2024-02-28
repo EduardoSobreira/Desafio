@@ -36,12 +36,14 @@ export const fetchFuncionarios = () => {
 export const postFuncionarios = (formulario) => {
     return (dispatch) => {
         dispatch(fetchFuncionariosRequest());
-        axios.post('http://localhost:3000/funcionario', formulario)
+        return axios.post('http://localhost:3000/funcionario', formulario)
             .then(response => {
                 dispatch(fetchFuncionariosSuccess(response));
+                return response;
             }).catch(error => {
                 const errorMsg = error.message;
                 dispatch(fetchFuncionariosFailure(errorMsg));
+                throw error;
             });
     };
 };
@@ -49,25 +51,29 @@ export const postFuncionarios = (formulario) => {
 export const putFuncionarios = (formulario) => {
     return (dispatch) => {
         dispatch(fetchFuncionariosRequest());
-        axios.put('http://localhost:3000/funcionario/' +  formulario['_id'], formulario)
+        return axios.put('http://localhost:3000/funcionario/' +  formulario['_id'], formulario)
             .then(response => {
                 dispatch(fetchFuncionariosSuccess(response));
+                return response;
             }).catch(error => {
-            const errorMsg = error.message;
-            dispatch(fetchFuncionariosFailure(errorMsg));
-        });
+                const errorMsg = error.message;
+                dispatch(fetchFuncionariosFailure(errorMsg));
+                throw error;
+            });
     };
 };
 
 export const deleteFuncionario = (formulario) => {
     return (dispatch) => {
         dispatch(fetchFuncionariosRequest());
-        axios.delete('http://localhost:3000/funcionario/' +  formulario['_id'])
+        return axios.delete('http://localhost:3000/funcionario/' +  formulario['_id'])
             .then(response => {
                 dispatch(fetchFuncionariosSuccess(response));
+                return response;
             }).catch(error => {
-            const errorMsg = error.message;
-            dispatch(fetchFuncionariosFailure(errorMsg));
-        });
+                const errorMsg = error.message;
+                dispatch(fetchFuncionariosFailure(errorMsg));
+                throw error;
+            });
     };
 };

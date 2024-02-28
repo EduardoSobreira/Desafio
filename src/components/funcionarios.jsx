@@ -36,9 +36,12 @@ const FuncionariosComponent = () => {
             navigate('/cadastrar-funcionario'
                 , {state: funcionario});
         } else if (action === 'excluir') {
-            dispatch(deleteFuncionario(funcionario));
-            message.success('Usuário excluido com sucesso!')
-            navigate('/')
+            dispatch(deleteFuncionario(funcionario)).then(response => {
+                message.success('Usuário excluído com sucesso!')
+                navigate('/');
+            }).catch(error => {
+                message.error('Ocorreu um erro ao excluir o usuário.');
+            });
         }
     };
 

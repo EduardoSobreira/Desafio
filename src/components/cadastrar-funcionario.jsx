@@ -109,12 +109,21 @@ const CadastrarFuncionarioComponent = () => {
         if (checkboxChecked || validateEpiPreenchido(funcionario.epis)) {
             setEpiValido(true);
             if (funcionario['_id']) {
-                dispatch(putFuncionarios(funcionario));
+                dispatch(putFuncionarios(funcionario)).then(response => {
+                    message.success('Funcionario alterado com sucesso')
+                    handlerVoltar();
+                }).catch(error => {
+                    message.error('Ocorreu um erro ao cadastrar o Funcionario.');
+                });
             } else {
-                dispatch(postFuncionarios(funcionario));
+                dispatch(postFuncionarios(funcionario)).then(response => {
+                    message.success('Funcionario cadastrado com sucesso')
+                    handlerVoltar();
+                }).catch(error => {
+                    message.error('Ocorreu um erro ao salvar o Funcionario.');
+                });
             }
-            message.success('Funcionario cadastrado com sucesso')
-            handlerVoltar();
+
         } else {
             setEpiValido(false);
             message.warning('É necessario cadastrar pelo menos um EPI ou selecionar o checkbox "O trabalhador não usa EPI"!', 5);
