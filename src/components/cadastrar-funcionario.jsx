@@ -5,8 +5,9 @@ import {ArrowLeftOutlined, UploadOutlined} from "@ant-design/icons";
 import {fetchFuncionarios, postFuncionarios, putFuncionarios} from "../actions/funcionarioActions.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import InputMask from 'react-input-mask'
 
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 const CadastrarFuncionarioComponent = () => {
     const location = useLocation();
@@ -21,11 +22,17 @@ const CadastrarFuncionarioComponent = () => {
     const loading = useSelector(state => state.funcionario.loading);
     const error = useSelector(state => state.funcionario.error);
 
+    const [epiValido, setEpiValido] = useState(true)
+
     const handleAddEpi = () => {
+        const novoEpi = {atividade: '', tipoEpi: '', ca: ''};
         setFuncionario((prevFuncionario) => ({
             ...prevFuncionario,
-            epis: [...prevFuncionario.epis, {atividade: '', tipoEpi: '', ca: ''}]
+            epis: [...prevFuncionario.epis, novoEpi]
         }));
+        if (!novoEpi.atividade || !novoEpi.tipoEpi || !novoEpi.ca) {
+            setEpiValido(false);
+        }
     };
 
     const handleRemoveEpi = (index) => {
@@ -74,30 +81,50 @@ const CadastrarFuncionarioComponent = () => {
     };
 
     const handleCheckboxChange = (e) => {
+        console.log("checkbox mudou")
         setCheckboxChecked(e.target.checked);
         setFuncionario((prevFuncionario) => ({
             ...prevFuncionario,
-            usaEpi: e.target.checked
+            usaEpi: !e.target.checked
         }));
+
+        if (!e.target.checked && funcionario.epis.length === 0) {
+            setEpiValido(false);
+            console.log("Erro: Nenhum EPI cadastrado e o checkbox não está marcado.")
+        } else {
+            setEpiValido(true);
+        }
     };
 
     const salvarFuncionario = () => {
-        if (funcionario['_id']) {
-            dispatch(putFuncionarios(funcionario));
+        console.log("Salvando funcionário...");
+        console.log("Estado atual de epiValido:", epiValido);
+
+        if (checkboxChecked || funcionario.epis.length > 0) {
+            setEpiValido(true);
+            if (epiValido) {
+                if (funcionario['_id']) {
+                    dispatch(putFuncionarios(funcionario));
+                } else {
+                    dispatch(postFuncionarios(funcionario));
+                }
+            }
         } else {
-            dispatch(postFuncionarios(funcionario));
+            setEpiValido(false);
         }
     }
+
 
     const handlerVoltar = () => {
         navigate('/');
     }
 
-    useEffect(() => {
+
+    /*useEffect(() => {
         if (!loading && !error) {
             navigate('/');
         }
-    }, [loading, error]);
+    }, [loading, error]);*/
 
     const renderEpiInputs = () => {
         return funcionario.epis.map((epi, index) => (
@@ -132,14 +159,15 @@ const CadastrarFuncionarioComponent = () => {
                         </div>
 
 
-                        <Button type="primary" htmlType="submit" className="custom-adicionar mt-5">Adicionar
+                        <Button type="primary" htmlType="submit" className="custom-adicionar mt-5"
+                                onClick={handleAddEpi}>Adicionar
                             EPI</Button>
                     </div>
 
                     <div className={'mt-5 w-100 p-5-px'}>
                         <Button
                             className="w-100 custom-buttom" type="primary" onClick={handleRemoveEpi}>Excluir
-                             atividade</Button>
+                            atividade</Button>
                     </div>
                 </div>
 
@@ -186,22 +214,26 @@ const CadastrarFuncionarioComponent = () => {
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>CPF: </label>
-                            <Input value={funcionario?.cpf} onChange={(e) => changeFuncionario('cpf', e)} placeholder="nome"/>
+                            <InputMask mask="999.999.999-99" value={funcionario?.cpf} onChange={(e) => changeFuncionario('cpf', e)}
+                                   placeholder="___.___.___-__"/>
                         </div>
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>Data Nascimento: </label>
-                            <Input value={funcionario?.dataNascimento} onChange={(e) => changeFuncionario('dataNascimento', e)} placeholder="nome"/>
+                            <InputMask mask="99/99/9999" value={funcionario?.dataNascimento}
+                                   onChange={(e) => changeFuncionario('dataNascimento', e)} placeholder="DD/MM/AAAA"/>
                         </div>
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>RG: </label>
-                            <Input value={funcionario?.rg} onChange={(e) => changeFuncionario('rg', e)} placeholder="nome"/>
+                            <Input value={funcionario?.rg} onChange={(e) => changeFuncionario('rg', e)}
+                                   placeholder="nome"/>
                         </div>
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>Cargo: </label>
-                            <Input value={funcionario?.cargo} onChange={(e) => changeFuncionario('cargo', e)} placeholder="nome"/>
+                            <Input value={funcionario?.cargo} onChange={(e) => changeFuncionario('cargo', e)}
+                                   placeholder="nome"/>
                         </div>
                     </div>
                 )}
@@ -218,7 +250,10 @@ const CadastrarFuncionarioComponent = () => {
                             </div>
 
                             {!checkboxChecked && switchChecked && (
-                                renderEpiInputs()
+                                <div>
+                                    {renderEpiInputs()}
+                                    <div style={{color: 'red'}}>É necessário cadastrar pelo menos um EPI</div>
+                                </div>
                             )}
 
                             <div className={'mt-5 w-100 p-5-px'}>
@@ -242,7 +277,8 @@ const CadastrarFuncionarioComponent = () => {
                 )}
 
                 <Button type="primary" htmlType="submit" className="w-100 mt-5 custom-buttom"
-                        onClick={salvarFuncionario}>Salvar</Button>
+                        onClick={salvarFuncionario}
+                        disabled={!epiValido}>Salvar</Button>
             </Form>
         </Card>
     );

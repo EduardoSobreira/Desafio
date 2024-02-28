@@ -58,7 +58,8 @@ const FuncionariosComponent = () => {
             {!error && funcionarios && funcionarios.map(funcionario => {
                 return (
                     <div className={'d-flex flex-row mt-5'} key={funcionario.id}>
-                        <div className={'d-flex flex-column w-100 p-1 b-t-l-r b-b-l-r'} style={{ backgroundColor: funcionario.ativo ? '#E0ECF2' : '#F2F2F2'}}>
+                        <div className={'d-flex flex-column w-100 p-1 b-t-l-r b-b-l-r'}
+                             style={{backgroundColor: funcionario.ativo ? '#E0ECF2' : '#F2F2F2'}}>
                             <div className={'w-100 funcionario-list-title'}>{funcionario.nome}</div>
 
                             <Space size={[0, 8]} wrap>
