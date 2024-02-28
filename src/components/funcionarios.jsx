@@ -10,7 +10,7 @@ const FuncionariosComponent = () => {
     let navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const funcionarios = useSelector(state => state.funcionario.funcionarios);
+    let funcionarios = useSelector(state => state.funcionario.funcionarios);
     const error = useSelector(state => state.funcionario.error);
     const loading = useSelector(state => state.funcionario.loading);
 
@@ -67,8 +67,12 @@ const FuncionariosComponent = () => {
                 <Button onClick={callNewFuncionario} className="custom-button w-100 h-40">Adicionar Funcionário</Button>
             </div>
             <div className={'mt-5 d-flex flex-row'}>
-                <Button type="primary">Ver apenas ativos </Button>
-                <Button type="primary ml-5">Limpar filtros </Button>
+                <Button type="primary" onClick={() => {
+                    funcionarios = funcionarios.filter(item => item.ativo)
+                }}>Ver apenas ativos </Button>
+                <Button type="primary ml-5" onClick={() => {
+                    dispatch(fetchFuncionarios());
+                }}>Limpar filtros </Button>
                 <span
                     className={'m-l-auto'}> Ativos {funcionarios.filter((item) => item.ativo).length}/{funcionarios.length} </span>
             </div>
