@@ -50,12 +50,12 @@ const FuncionariosComponent = () => {
                 return (
                     <div className={'d-flex flex-row mt-5'} key={funcionario.id}>
                         <div className={'d-flex flex-column w-100 p-1 b-t-l-r b-b-l-r'} style={{ backgroundColor: funcionario.approved ? '#E0ECF2' : '#F2F2F2'}}>
-                            <div className={'w-100 funcionario-list-title'}>{funcionario.name}</div>
+                            <div className={'w-100 funcionario-list-title'}>{funcionario.nome}</div>
 
                             <Space size={[0, 8]} wrap>
                                 <Tag color="#4096ff">{funcionario.cpf}</Tag>
-                                <Tag color="#4096ff">{funcionario.approved ? 'Sim' : 'Não'}</Tag>
-                                <Tag color="#4096ff">{funcionario.cpf}</Tag>
+                                <Tag color="#4096ff">{funcionario.ativo ? 'Ativo' : 'Inativo'}</Tag>
+                                <Tag color="#4096ff">{funcionario.cargo}</Tag>
                             </Space>
                         </div>
                         <div className={'m-l-auto p-1 custom-spread-div b-t-r-r b-b-r-r'}>...</div>
