@@ -5,44 +5,41 @@ import MenuComponent from "./components/menu.jsx";
 import React, {useState} from "react";
 import {Button} from "antd";
 import {useNavigate} from "react-router-dom";
+import {SolutionOutlined, UserOutlined} from "@ant-design/icons";
 
 const steps = [
     {
         title: 'Item 1',
-        content: 'Item 1',
+        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 2',
-        content: 'Item 2',
-    },
-    {
-        title: 'Item 3',
-        content: 'Item 3',
+        icon: <SolutionOutlined />,
     },
     {
         title: 'Item 4',
-        content: 'Item 4',
+        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 5',
-        content: 'Item 5',
+        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 6',
-        content: 'Item 6',
+        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 7',
-        content: 'Item 7',
+        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 8',
-        content: 'Item 8',
+        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 9',
-        content: 'Item 9',
-    },
+        icon: <UserOutlined className={'custom-icon'} />,
+    }
 ];
 
 function App() {

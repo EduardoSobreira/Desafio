@@ -1,3 +1,17 @@
+.ant-steps-item-tail::after {
+    height: 1px;
+    background-color: transparent;
+    border-bottom: 5px dashed #4fa1c2;
+}
+
+.ant-steps .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-tail::after {
+    background-color: transparent !important;
+}
+
+.ant-steps .ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-tail::after {
+  background-color: transparent !important;
+}
+/*
 .ant-steps-item-container {
     display: flex;
     padding: 20px;
@@ -30,10 +44,10 @@
 }
 
 .ant-steps-item-title::after {
-    background: transparent !important; /* TODO: remover e alterar dps */
+    background: transparent !important; !* TODO: remover e alterar dps *!
 }
 
 .ant-steps-item-tail:after {
     color: #649FBF;
     height: 20px;
-}
+}*/
