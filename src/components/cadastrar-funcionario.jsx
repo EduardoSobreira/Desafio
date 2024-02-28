@@ -98,7 +98,6 @@ const CadastrarFuncionarioComponent = () => {
     const validateEpiPreenchido = (epis) => {
         let isValido = true;
 
-        debugger
         epis.forEach( epi => {
             if (!(epi.ca && epi.tipoEpi && epi.atividade)) {
                 isValido = false
@@ -108,7 +107,6 @@ const CadastrarFuncionarioComponent = () => {
     }
 
     const salvarFuncionario = () => {
-        debugger
         if (checkboxChecked || validateEpiPreenchido(funcionario.epis)) {
             setEpiValido(true);
             if (funcionario['_id']) {
