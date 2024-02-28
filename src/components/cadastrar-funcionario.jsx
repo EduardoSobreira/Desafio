@@ -186,22 +186,22 @@ const CadastrarFuncionarioComponent = () => {
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>CPF: </label>
-                            <Input onChange={(e) => changeFuncionario('cpf', e)} placeholder="nome"/>
+                            <Input value={funcionario?.cpf} onChange={(e) => changeFuncionario('cpf', e)} placeholder="nome"/>
                         </div>
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>Data Nascimento: </label>
-                            <Input onChange={(e) => changeFuncionario('dataNascimento', e)} placeholder="nome"/>
+                            <Input value={funcionario?.dataNascimento} onChange={(e) => changeFuncionario('dataNascimento', e)} placeholder="nome"/>
                         </div>
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>RG: </label>
-                            <Input onChange={(e) => changeFuncionario('rg', e)} placeholder="nome"/>
+                            <Input value={funcionario?.rg} onChange={(e) => changeFuncionario('rg', e)} placeholder="nome"/>
                         </div>
 
                         <div className={'d-flex flex-column w-45'}>
                             <label>Cargo: </label>
-                            <Input onChange={(e) => changeFuncionario('cargo', e)} placeholder="nome"/>
+                            <Input value={funcionario?.cargo} onChange={(e) => changeFuncionario('cargo', e)} placeholder="nome"/>
                         </div>
                     </div>
                 )}
