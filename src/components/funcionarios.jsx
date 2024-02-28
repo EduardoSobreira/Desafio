@@ -1,35 +1,52 @@
 import React, {useEffect} from 'react';
-import {Button, Card, Space, Spin, Table, Tag} from "antd";
+import {Button, Card, Dropdown, Menu, message, Space, Spin, Tag} from "antd";
 import '../estilos/funcionario.css'
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFuncionarios} from "../actions/funcionarioActions.jsx";
+import {DownOutlined, EllipsisOutlined} from "@ant-design/icons";
+import {deleteFuncionario, fetchFuncionarios, putFuncionarios} from "../actions/funcionarioActions.jsx";
 
 const FuncionariosComponent = () => {
     let navigate = useNavigate();
 
     const dispatch = useDispatch();
     const funcionarios = useSelector(state => state.funcionario.funcionarios);
-    const loading = useSelector(state => state.funcionario.loading);
     const error = useSelector(state => state.funcionario.error);
+    const loading = useSelector(state => state.funcionario.loading);
 
     useEffect(() => {
         dispatch(fetchFuncionarios());
     }, [dispatch]);
 
+
     const callNewFuncionario = (e) => {
         e.preventDefault();
-        navigate('/cadastrar-funcionario', {state: {
-            usaEpi: false,
-            atestadoSaude: null,
-            epis: [{atividade: '', tipoEpi: '', ca: ''}]
-        }});
+        navigate('/cadastrar-funcionario', {
+            state: {
+                usaEpi: false,
+                atestadoSaude: null,
+                epis: [{atividade: '', tipoEpi: '', ca: ''}]
+            }
+        });
     }
 
-    const editarFuncionario = (funcionario) => {
-        navigate('/cadastrar-funcionario'
-            , { state: funcionario });
+
+    const handleMenuClick = (funcionario, action) => {
+        if (action === 'alterar') {
+            navigate('/cadastrar-funcionario'
+                , {state: funcionario});
+        } else if (action === 'excluir') {
+            dispatch(deleteFuncionario(funcionario));
+            message.success('Usuário excluido com sucesso!')
+        }
     };
+
+    const menu = (funcionario) => (
+        <Menu onClick={({key}) => handleMenuClick(funcionario, key)}>
+            <Menu.Item key="alterar">Alterar</Menu.Item>
+            <Menu.Item key="excluir">Excluir</Menu.Item>
+        </Menu>
+    );
 
     return (
         <Card
@@ -48,11 +65,12 @@ const FuncionariosComponent = () => {
             <div className={'mt-5 d-flex flex-row'}>
                 <Button type="primary">Ver apenas ativos </Button>
                 <Button type="primary ml-5">Limpar filtros </Button>
-                <span className={'m-l-auto'}> Ativos {funcionarios.filter((item) => item.ativo).length}/{funcionarios.length} </span>
+                <span
+                    className={'m-l-auto'}> Ativos {funcionarios.filter((item) => item.ativo).length}/{funcionarios.length} </span>
             </div>
 
             {loading && (
-                <Spin className={'mt-5'} size="large" tip="Carregando..." />
+                <Spin className={'mt-5'} size="large" tip="Carregando..."/>
             )}
 
             {!error && funcionarios && funcionarios.map(funcionario => {
@@ -68,7 +86,14 @@ const FuncionariosComponent = () => {
                                 <Tag color="#4096ff">{funcionario.cargo}</Tag>
                             </Space>
                         </div>
-                        <div onClick={() => editarFuncionario(funcionario)} className={'m-l-auto p-1 custom-spread-div b-t-r-r b-b-r-r'}>...</div>
+
+                        <Dropdown
+                            overlay={menu(funcionario)}
+                            trigger={['click']}
+                            className={'m-l-auto p-1 custom-spread-div b-t-r-r b-b-r-r'}
+                        >
+                            <EllipsisOutlined/>
+                        </Dropdown>
                     </div>
                 );
             })}

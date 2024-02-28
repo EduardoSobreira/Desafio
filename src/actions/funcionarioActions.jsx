@@ -58,3 +58,16 @@ export const putFuncionarios = (formulario) => {
         });
     };
 };
+
+export const deleteFuncionario = (formulario) => {
+    return (dispatch) => {
+        dispatch(fetchFuncionariosRequest());
+        axios.delete('http://localhost:3000/funcionario/' +  formulario['_id'])
+            .then(response => {
+                dispatch(fetchFuncionariosSuccess(response));
+            }).catch(error => {
+            const errorMsg = error.message;
+            dispatch(fetchFuncionariosFailure(errorMsg));
+        });
+    };
+};
