@@ -38,6 +38,7 @@ const FuncionariosComponent = () => {
         } else if (action === 'excluir') {
             dispatch(deleteFuncionario(funcionario));
             message.success('Usuário excluido com sucesso!')
+            navigate('/')
         }
     };
 

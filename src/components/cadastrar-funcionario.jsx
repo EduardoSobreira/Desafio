@@ -114,6 +114,7 @@ const CadastrarFuncionarioComponent = () => {
                 dispatch(postFuncionarios(funcionario));
             }
             message.success('Funcionario cadastrado com sucesso')
+            handlerVoltar();
         } else {
             setEpiValido(false);
             message.warning('É necessario cadastrar pelo menos um EPI ou selecionar o checkbox "O trabalhador não usa EPI"!', 5);
