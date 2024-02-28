@@ -144,3 +144,7 @@ input, select {
 .w-45 {
   width: 45%;
 }
+
+.imagem-custom {
+  width: 200px !important;
+}

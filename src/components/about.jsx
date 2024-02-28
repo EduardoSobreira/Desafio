@@ -13,7 +13,7 @@ const AboutComponent = () => {
                 justo eget, luctus scelerisque velit. Nam sollicitudin purus urna, vitae ornare neque tincidunt vel.
                 Proin ac lacinia erat, et commmodo felis, Phasellus tempor tellus eu vulputate tempus.</p>
             <Image
-                width={200}
+                className={'imagem-custom'}
                 src='../src/assets/person.png'
                 alt="Descrição da imagem"
             />
