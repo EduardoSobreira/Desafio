@@ -10,35 +10,27 @@ import {SolutionOutlined, UserOutlined} from "@ant-design/icons";
 const steps = [
     {
         title: 'Item 1',
-        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 2',
-        icon: <SolutionOutlined />,
     },
     {
         title: 'Item 4',
-        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 5',
-        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 6',
-        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 7',
-        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 8',
-        icon: <UserOutlined className={'custom-icon'} />,
     },
     {
         title: 'Item 9',
-        icon: <UserOutlined className={'custom-icon'} />,
     }
 ];
 
