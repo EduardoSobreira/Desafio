@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Button, Card, Space, Table} from "antd";
+import {Button, Card, Space, Table, Tag} from "antd";
 import '../estilos/funcionario.css'
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -44,10 +44,6 @@ const FuncionariosComponent = () => {
         return <div>Loading...</div>;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
     return (
         <Card
             title={
@@ -68,16 +64,19 @@ const FuncionariosComponent = () => {
                 <span className={'m-l-auto'}> Ativos 2/4 </span>
             </div>
 
-            {funcionarios && funcionarios.map(funcionario => {
+            {!error && funcionarios && funcionarios.map(funcionario => {
                 return (
-                    <div className={'d-flex flex-row'} key={funcionario.id}>
-                        <div className={'d-flex flex-column'}>
-                            <div className={'w-100'}>{funcionario.name}</div>
-                            <div>{funcionario.name}</div>
-                            <div>{funcionario.name}</div>
-                            <div>{funcionario.name}</div>
+                    <div className={'d-flex flex-row mt-5'} key={funcionario.id}>
+                        <div className={'d-flex flex-column w-100 p-1 b-t-l-r b-b-l-r'} style={{ backgroundColor: funcionario.approved ? '#E0ECF2' : '#F2F2F2'}}>
+                            <div className={'w-100 funcionario-list-title'}>{funcionario.name}</div>
+
+                            <Space size={[0, 8]} wrap>
+                                <Tag color="#4096ff">{funcionario.cpf}</Tag>
+                                <Tag color="#4096ff">{funcionario.approved ? 'Sim' : 'Não'}</Tag>
+                                <Tag color="#4096ff">{funcionario.cpf}</Tag>
+                            </Space>
                         </div>
-                        <div>...</div>
+                        <div className={'m-l-auto p-1 custom-spread-div b-t-r-r b-b-r-r'}>...</div>
                     </div>
                 );
             })}

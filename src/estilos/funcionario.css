@@ -29,6 +29,12 @@
 
 .form-header {
     margin-bottom: 20px;
+    border: 1px solid #649FBF;
+    display: flex;
+    border-radius: 8px;
+    height: 30px;
+    padding: 5px;
+    font-weight: bold;
 }
 
 
@@ -136,3 +142,35 @@
 .custom-filtro {
 
 }
+
+.custom-spread-div {
+    background-color: #3e8bf8;
+    color: #fff;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.funcionario-list-title {
+    color: #717171;
+    font-size: 1rem;
+}
+
+.b-t-l-r {
+    border-top-left-radius: 8px;
+}
+
+.b-b-l-r {
+    border-bottom-left-radius: 8px;
+}
+
+.b-t-r-r {
+    border-top-right-radius: 8px;
+}
+
+.b-b-r-r {
+    border-bottom-right-radius: 8px;
+}
+
