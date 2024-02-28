@@ -32,3 +32,16 @@ export const fetchFuncionarios = () => {
             });
     };
 };
+
+export const postFuncionarios = (formulario) => {
+    return (dispatch) => {
+        dispatch(fetchFuncionariosRequest());
+        axios.post('http://localhost:3000/funcionario', formulario)
+            .then(response => {
+                dispatch(fetchFuncionariosSuccess(response));
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(fetchFuncionariosFailure(errorMsg));
+            });
+    };
+};

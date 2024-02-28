@@ -5,24 +5,6 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchFuncionarios} from "../actions/funcionarioActions.jsx";
 
-const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
-    },
-];
-
 const FuncionariosComponent = () => {
     let navigate = useNavigate();
 
