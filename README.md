@@ -61,3 +61,9 @@ desafio/
 - App.jsx: Este é o componente principal da aplicação.
 - main.jsx: Este é o ponto de entrada da aplicação onde o React é renderizado no DOM.
 - package.json: Este arquivo contém as dependências do projeto e scripts de build.
+
+### Este projeto consome os serviços do backend do git abaixo:
+
+````bash
+https://github.com/EduardoSobreira/Desafio-Backend.git
+````
