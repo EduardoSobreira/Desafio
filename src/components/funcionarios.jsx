@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Button, Card, Space, Table, Tag} from "antd";
+import {Button, Card, Space, Spin, Table, Tag} from "antd";
 import '../estilos/funcionario.css'
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -22,10 +22,6 @@ const FuncionariosComponent = () => {
         navigate('/cadastrar-funcionario');
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
     return (
         <Card
             title={
@@ -43,8 +39,12 @@ const FuncionariosComponent = () => {
             <div className={'mt-5 d-flex flex-row'}>
                 <Button type="primary">Ver apenas ativos </Button>
                 <Button type="primary ml-5">Limpar filtros </Button>
-                <span className={'m-l-auto'}> Ativos 2/4 </span>
+                <span className={'m-l-auto'}> Ativos {funcionarios.filter((item) => item.ativo).length}/{funcionarios.length} </span>
             </div>
+
+            {loading && (
+                <Spin className={'mt-5'} size="large" tip="Carregando..." />
+            )}
 
             {!error && funcionarios && funcionarios.map(funcionario => {
                 return (

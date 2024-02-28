@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space, Row, Col} from 'antd';
 import '../estilos/funcionario.css'
 import {ArrowLeftOutlined, UploadOutlined} from "@ant-design/icons";
 import {fetchFuncionarios, postFuncionarios} from "../actions/funcionarioActions.jsx";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 
 const CadastrarFuncionarioComponent = () => {
@@ -16,6 +17,9 @@ const CadastrarFuncionarioComponent = () => {
     });
     const [epi, setEpi] = useState([]);
     const dispatch = useDispatch();
+    let navigate = useNavigate();
+    const loading = useSelector(state => state.funcionario.loading);
+    const error = useSelector(state => state.funcionario.error);
 
     const handleAddEpi = () => {
         setFuncionario((prevFuncionario) => ({
@@ -81,6 +85,16 @@ const CadastrarFuncionarioComponent = () => {
         dispatch(postFuncionarios(funcionario));
     }
 
+    const handlerVoltar = () => {
+        navigate('/');
+    }
+
+    useEffect(() => {
+        if (!loading && !error) {
+            navigate('/');
+        }
+    }, [loading, error]);
+
     const renderEpiInputs = () => {
         return funcionario.epis.map((epi, index) => (
             <div key={index} className="container-epi mt-5">
@@ -134,7 +148,9 @@ const CadastrarFuncionarioComponent = () => {
             title={
                 <div className="card-title">
                     <Space>
-                        <Button type="text" icon={<ArrowLeftOutlined/>}/>
+                        <Button type="text"
+                                onClick={handlerVoltar}
+                                icon={<ArrowLeftOutlined/>}/>
                         <span>Adicionar Funcionário</span>
                     </Space>
                 </div>
