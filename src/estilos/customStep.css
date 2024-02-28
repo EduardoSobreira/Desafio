@@ -15,7 +15,10 @@
 .ant-steps-icon {
     background-color: #4fa1c2 !important;
     border-radius: 15px;
-    padding: 8px;
+    padding-top: 3px !important;
+    padding-bottom: 15px;
+    padding-right: 5px;
+    padding-left: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -26,4 +29,13 @@
 .ant-steps.ant-steps-label-vertical .ant-steps-item-tail {
     margin-inline-start: 56px;
     padding: 0 !important;
+}
+
+.ant-image {
+    pointer-events: none !important;
+    width: 40px !important;
+}
+
+.ant-steps-item-icon {
+    margin-left: 30px !important;
 }
