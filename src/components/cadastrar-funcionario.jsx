@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space, Row, Col} from 'antd';
+import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space, Row, Col, message} from 'antd';
 import '../estilos/funcionario.css'
 import {ArrowLeftOutlined, UploadOutlined} from "@ant-design/icons";
 import {fetchFuncionarios, postFuncionarios, putFuncionarios} from "../actions/funcionarioActions.jsx";
@@ -21,6 +21,7 @@ const CadastrarFuncionarioComponent = () => {
     let navigate = useNavigate();
     const loading = useSelector(state => state.funcionario.loading);
     const error = useSelector(state => state.funcionario.error);
+    const [messageApi, contextHolder] = message.useMessage();
 
     const [epiValido, setEpiValido] = useState(true)
 
@@ -81,7 +82,6 @@ const CadastrarFuncionarioComponent = () => {
     };
 
     const handleCheckboxChange = (e) => {
-        console.log("checkbox mudou")
         setCheckboxChecked(e.target.checked);
         setFuncionario((prevFuncionario) => ({
             ...prevFuncionario,
@@ -90,27 +90,35 @@ const CadastrarFuncionarioComponent = () => {
 
         if (!e.target.checked && funcionario.epis.length === 0) {
             setEpiValido(false);
-            console.log("Erro: Nenhum EPI cadastrado e o checkbox não está marcado.")
         } else {
             setEpiValido(true);
         }
     };
 
-    const salvarFuncionario = () => {
-        console.log("Salvando funcionário...");
-        console.log("Estado atual de epiValido:", epiValido);
+    const validateEpiPreenchido = (epis) => {
+        let isValido = true;
 
-        if (checkboxChecked || funcionario.epis.length > 0) {
+        debugger
+        epis.forEach( epi => {
+            if (!(epi.ca && epi.tipoEpi && epi.atividade)) {
+                isValido = false
+            }
+        })
+        return isValido;
+    }
+
+    const salvarFuncionario = () => {
+        debugger
+        if (checkboxChecked || validateEpiPreenchido(funcionario.epis)) {
             setEpiValido(true);
-            if (epiValido) {
-                if (funcionario['_id']) {
-                    dispatch(putFuncionarios(funcionario));
-                } else {
-                    dispatch(postFuncionarios(funcionario));
-                }
+            if (funcionario['_id']) {
+                dispatch(putFuncionarios(funcionario));
+            } else {
+                dispatch(postFuncionarios(funcionario));
             }
         } else {
             setEpiValido(false);
+            messageApi.warning('É necessario cadastrar pelo menos um EPI ou selecionar o checkbox "O trabalhador não usa EPI"!');
         }
     }
 
@@ -252,7 +260,6 @@ const CadastrarFuncionarioComponent = () => {
                             {!checkboxChecked && switchChecked && (
                                 <div>
                                     {renderEpiInputs()}
-                                    <div style={{color: 'red'}}>É necessário cadastrar pelo menos um EPI</div>
                                 </div>
                             )}
 
@@ -277,8 +284,7 @@ const CadastrarFuncionarioComponent = () => {
                 )}
 
                 <Button type="primary" htmlType="submit" className="w-100 mt-5 custom-buttom"
-                        onClick={salvarFuncionario}
-                        disabled={!epiValido}>Salvar</Button>
+                        onClick={salvarFuncionario}>Salvar</Button>
             </Form>
         </Card>
     );

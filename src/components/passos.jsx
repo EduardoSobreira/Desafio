@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, Steps} from 'antd';
 import '../estilos/customStep.css'
 import {UserOutlined} from "@ant-design/icons";
+import {useNavigate} from "react-router-dom";
 
 
 const StepComponent = ({items, current}) => {
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        if (current > 0 ) {
+            navigate('/passo-2')
+        } else {
+            navigate('/')
+        }
+    }, [current]);
     return (
         <div className="app">
             <Steps current={current} labelPlacement="vertical">

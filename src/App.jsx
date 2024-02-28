@@ -39,10 +39,6 @@ function App() {
 
     const next = () => {
         setCurrent(current + 1);
-
-        if (current > 0) {
-            // navegar pro componente em breve
-        }
     };
 
     const prev = () => {

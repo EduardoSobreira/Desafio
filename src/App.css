@@ -148,3 +148,7 @@ input, select {
 .imagem-custom {
   width: 200px !important;
 }
+
+.min-h-400 {
+  min-height: 400px !important;
+}

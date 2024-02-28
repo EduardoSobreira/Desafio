@@ -19,8 +19,7 @@ class MenuComponent extends React.Component {
         return (
             <div className="menu-container">
                 <div className={'mt-10 enfeite-menu'}/>
-                <Menu inlineCollapsed={this.state.collapsed}
-                >
+                <Menu >
                     <Menu.Item key="1" icon={<ProfileOutlined/>}>
                     </Menu.Item>
                     <Menu.Item key="2" icon={<FormOutlined/>}>
