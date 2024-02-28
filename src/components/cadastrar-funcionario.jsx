@@ -128,7 +128,7 @@ const CadastrarFuncionarioComponent = () => {
                                 <Form.Item className="form-item" label="Selecione o EPI" name="epi">
                                     <Select>
                                         <Select.Option value="Calcado de seguranca">Calçado de Segurança</Select.Option>
-                                        <Select.Option value="capacete">Capacete</Select.Option> >
+                                        <Select.Option value="capacete">Capacete</Select.Option>
                                     </Select>
                                 </Form.Item>
 
