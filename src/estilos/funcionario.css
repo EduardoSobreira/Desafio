@@ -19,6 +19,22 @@
     font-size: 2rem  !important;
 }
 
+.container-epi {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.container-atividade {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #4fa1c2;
+    border-radius: 8px;
+    padding: 5px;
+}
+
 .descricao {
     display: flex;
     flex-wrap: wrap;
@@ -173,4 +189,3 @@
 .b-b-r-r {
     border-bottom-right-radius: 8px;
 }
-

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space} from 'antd';
+import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space, Row, Col} from 'antd';
 import '../estilos/funcionario.css'
 
 function UploadOutlined() {
@@ -14,6 +14,8 @@ const CadastrarFuncionarioComponent = () => {
     const [switchChecked, setSwitchChecked] = useState(false);
     const [checkboxChecked, setCheckboxChecked] = useState(false);
     const [formGroupVisible, setFormGroupVisible] = useState(false);
+    const [form] = Form.useForm();
+    const [expand, setExpand] = useState(false);
 
     const handleSwitchChange = (checked) => {
         setSwitchChecked(checked);
@@ -38,6 +40,51 @@ const CadastrarFuncionarioComponent = () => {
 
     }
 
+    const getFields = () => {
+        const count = expand ? 10 : 6;
+        const children = [];
+        for (let i = 0; i < count; i++) {
+            children.push(
+                <Col span={8} key={i}>
+                    {i % 3 !== 1 ? (
+                        <Form.Item
+                            name={`field-${i}`}
+                            label={`Field ${i}`}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Input something!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="placeholder"/>
+                        </Form.Item>
+                    ) : (
+                        <Form.Item
+                            name={`field-${i}`}
+                            label={`Field ${i}`}
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Select something!',
+                                },
+                            ]}
+                            initialValue="1"
+                        >
+                            <Select>
+                                <Option value="1">
+                                    longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong
+                                </Option>
+                                <Option value="2">222</Option>
+                            </Select>
+                        </Form.Item>
+                    )}
+                </Col>,
+            );
+        }
+        return children;
+    };
+
     return (
         <Card
             title={
@@ -53,113 +100,112 @@ const CadastrarFuncionarioComponent = () => {
             <Form onFinish={onFinish}>
                 <div className="form-header">
                     <Form.Item label="O trabalhador está inativo ou ativo?">
-                        <Switch checked={switchChecked} onChange={handleSwitchChange}/>
+                        <Switch className={'m-l-auto'} checked={switchChecked} onChange={handleSwitchChange}/>
                     </Form.Item>
                 </div>
 
                 {switchChecked && (
-                    <div className="descricao">
-                        <Form>
-                            <Form.Item label="Nome" name="nome">
-                                <Input/>
-                            </Form.Item>
+                    <div className="descricao d-flex flex-row space-between">
+                        <div className={'d-flex flex-column w-45'}>
+                            <label>Nome: </label>
+                            <Input placeholder="nome"/>
+                        </div>
 
-                            <Form.Item label="Gênero" name="genero">
-                                <Radio.Group>
-                                    <Radio value="masculino">Masculino</Radio>
-                                    <Radio value="feminino">Feminino</Radio>
-                                </Radio.Group>
-                            </Form.Item>
+                        <div className={'d-flex flex-column w-45'}>
+                            <label>Sexo: </label>
+                            <Radio.Group>
+                                <Radio value={'F'}>Feminino</Radio>
+                                <Radio value={'M'}>Masculino</Radio>
+                            </Radio.Group>
+                        </div>
 
-                            <Form.Item label="CPF" name="cpf">
-                                <Input/>
-                            </Form.Item>
+                        <div className={'d-flex flex-column w-45'}>
+                            <label>CPF: </label>
+                            <Input placeholder="nome"/>
+                        </div>
 
-                            <Form.Item label="Data de nascimento" name="dataNascimento">
-                                <Input/>
-                            </Form.Item>
+                        <div className={'d-flex flex-column w-45'}>
+                            <label>Data Nascimento: </label>
+                            <Input placeholder="nome"/>
+                        </div>
 
-                            <Form.Item label="RG" name="rg">
-                                <Input/>
-                            </Form.Item>
+                        <div className={'d-flex flex-column w-45'}>
+                            <label>RG: </label>
+                            <Input placeholder="nome"/>
+                        </div>
 
-                            <Form.Item label="Cargo" name="cargo">
-                                <Select>
-                                    <Select.Option value="operador de maquinas">Operador de máquinas</Select.Option>
-                                    <Select.Option value="analista">Analista</Select.Option>
-                                    <Select.Option value="assistente">Assistente</Select.Option>
-                                </Select>
-                            </Form.Item>
-
-                        </Form>
-                    </div>
-                )}
-
-
-                {switchChecked && (
-                    <div className="checkbox">
-                        <h2>Quais EPIs o trabalhador usa na atividade?</h2>
-                        <Form.Item label="O trabalhador não usa EPI">
-                            <Checkbox
-                                checked={checkboxChecked}
-                                onChange={handleCheckboxChange}
-                            >
-                                Ativar
-                            </Checkbox>
-                        </Form.Item>
-                    </div>
-
-                )}
-
-                {!checkboxChecked && formGroupVisible && (
-                    <div className="epi">
-                        <Form>
-                            <div className="selecionar-atividade">
-                                <Form.Item label="Selecione a atividade" name="atividade">
-                                    <Select>
-                                        <Select.Option value="atividade 1">Atividade 1</Select.Option>
-                                        <Select.Option value="Atividade 2">Atividade 2</Select.Option>
-                                        <Select.Option value="Atividade 3">Atividade 3</Select.Option>
-                                    </Select>
-                                </Form.Item>
-                            </div>
-
-                            <div className="selecionar-epi">
-                                <Form.Item className="form-item" label="Selecione o EPI" name="epi">
-                                    <Select>
-                                        <Select.Option value="Calcado de seguranca">Calçado de Segurança</Select.Option>
-                                        <Select.Option value="capacete">Capacete</Select.Option>
-                                    </Select>
-                                </Form.Item>
-
-                                <Form.Item className="form-item" label="Informe o Número do CA" name="numero">
-                                    <Input/>
-                                </Form.Item>
-                                <Form.Item>
-                                    <Button type="primary" htmlType="submit" className="custom-adicionar">Adicionar
-                                        EPI</Button>
-                                </Form.Item>
-                            </div>
-
-                            <Form.Item>
-                                <Button className="custom-buttom" type="primary" htmlType="submit">Adicionar outra
-                                    atividade</Button>
-                            </Form.Item>
-                        </Form>
-                        <div className="docs">
-                            <Form.Item className="custom-buttom" label="Adicionar Atestado de Saúde (opcional)"
-                                       name="documentos">
-                                <Upload {...uploadProps}>
-                                    <Button icon={<UploadOutlined/>}>Selecione Arquivos</Button>
-                                </Upload>
-                            </Form.Item>
+                        <div className={'d-flex flex-column w-45'}>
+                            <label>Cargo: </label>
+                            <Input placeholder="nome"/>
                         </div>
                     </div>
-
                 )}
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className="custom-buttom">Salvar</Button>
-                </Form.Item>
+
+                {switchChecked && (
+                    <div>
+                        <div className="container-epi mt-5">
+                            <div>
+                                <h2>Quais EPIs o trabalhador usa na atividade?</h2>
+                                <Checkbox
+                                    checked={checkboxChecked}
+                                    onChange={handleCheckboxChange}/>
+                                <span>O trabalhador não usa EPI</span>
+                            </div>
+
+                            {!checkboxChecked && switchChecked && (
+                                <div className={'mt-5 w-100'}>
+                                    <div className="container-atividade d-flex flex-row space-between w-100">
+                                        <div className={'d-flex flex-column w-100'}>
+                                            <label>Selecione a atividade: </label>
+                                            <Select className={'w-100'}>
+                                                <Select.Option value="atividade 1">Atividade 1</Select.Option>
+                                                <Select.Option value="Atividade 2">Atividade 2</Select.Option>
+                                                <Select.Option value="Atividade 3">Atividade 3</Select.Option>
+                                            </Select>
+                                        </div>
+
+                                        <div className={'d-flex flex-row w-100 space-between'}>
+                                            <div className={'d-flex flex-column'}>
+                                                <label>Selecione o EPI: </label>
+                                                <Select className={'w-100'}>
+                                                    <Select.Option value="Calcado de seguranca">Calçado de
+                                                        Segurança</Select.Option>
+                                                    <Select.Option value="capacete">Capacete</Select.Option>
+                                                </Select>
+                                            </div>
+
+                                            <div className={'d-flex flex-column'}>
+                                                <label>Informe o Número do CA: </label>
+                                                <Input/>
+                                            </div>
+
+
+                                            <Button type="primary" htmlType="submit" className="custom-adicionar mt-5">Adicionar
+                                                EPI</Button>
+                                        </div>
+                                    </div>
+
+                                    <div className={'mt-5 w-100 p-5-px'}>
+                                        <Button className="w-100 custom-buttom" type="primary" htmlType="submit">Adicionar
+                                            outra
+                                            atividade</Button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="container-epi mt-5">
+                            <div>
+                                <h2>Adicionar Atestado de Saúde (opcional)</h2>
+                                <Upload className={'w-100'} {...uploadProps}>
+                                    <Button className={'w-100'} icon={<UploadOutlined/>}>Selecione Arquivos</Button>
+                                </Upload>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                <Button type="primary" htmlType="submit" className="w-100 mt-5 custom-buttom">Salvar</Button>
             </Form>
         </Card>
     );

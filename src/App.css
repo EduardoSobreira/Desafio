@@ -121,6 +121,10 @@ input, select {
   padding: 1rem;
 }
 
+.p-5-px {
+  padding: 5px;
+}
+
 .h-40 {
   height: 40px;
 }
@@ -131,4 +135,12 @@ input, select {
 
 .m-h-500 {
   max-height: 500px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.w-45 {
+  width: 45%;
 }
