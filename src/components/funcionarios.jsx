@@ -36,7 +36,7 @@ const FuncionariosComponent = () => {
             title={
                 <div className="card-title">
                     <Space>
-                        <span>Adicionar Funcionário</span>
+                        <span>Funcionário (s)</span>
                     </Space>
                 </div>
             }

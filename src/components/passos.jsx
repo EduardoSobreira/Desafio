@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {Image, Steps} from 'antd';
 import '../estilos/customStep.css'
-import {UserOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 
 
@@ -17,7 +16,7 @@ const StepComponent = ({items, current}) => {
     }, [current]);
     return (
         <div className="app">
-            <Steps current={current} labelPlacement="vertical">
+            <Steps current={current} labelPlacement="vertical" responsive={true}>
                 {items.map((item, index) => (
                     <Steps.Step key={index} icon={<Image src='../src/assets/icone.png' className={'custom-icon'} />} title={item.title} />
                 ))}

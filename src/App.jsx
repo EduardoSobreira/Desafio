@@ -38,7 +38,9 @@ function App() {
     const [current, setCurrent] = useState(0);
 
     const next = () => {
-        setCurrent(current + 1);
+        if (current < 8) {
+            setCurrent(current + 1);
+        }
     };
 
     const prev = () => {
@@ -55,9 +57,9 @@ function App() {
             <RouterComponent/>
 
             <div className={'d-flex flex-row w-100 mt-5'}>
-                {current > 0 && (<Button className={'w-40'} onClick={prev} type="primary">Step Anterior</Button>)
+                {current > 0 && (<Button className={'w-40'} onClick={prev} type="primary">Passo Anterior</Button>)
                 }
-                <Button className={'w-40 m-l-auto'} type="primary" onClick={next}>Proximo Step</Button>
+                {current < 7 && (<Button className={'w-40 m-l-auto'} type="primary" onClick={next}>Proximo Passo</Button>)}
             </div>
         </div>
 

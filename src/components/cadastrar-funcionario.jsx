@@ -21,7 +21,6 @@ const CadastrarFuncionarioComponent = () => {
     let navigate = useNavigate();
     const loading = useSelector(state => state.funcionario.loading);
     const error = useSelector(state => state.funcionario.error);
-    const [messageApi, contextHolder] = message.useMessage();
 
     const [epiValido, setEpiValido] = useState(true)
 
@@ -114,23 +113,16 @@ const CadastrarFuncionarioComponent = () => {
             } else {
                 dispatch(postFuncionarios(funcionario));
             }
+            message.success('Funcionario cadastrado com sucesso')
         } else {
             setEpiValido(false);
-            messageApi.warning('É necessario cadastrar pelo menos um EPI ou selecionar o checkbox "O trabalhador não usa EPI"!');
+            message.warning('É necessario cadastrar pelo menos um EPI ou selecionar o checkbox "O trabalhador não usa EPI"!', 5);
         }
     }
-
 
     const handlerVoltar = () => {
         navigate('/');
     }
-
-
-    /*useEffect(() => {
-        if (!loading && !error) {
-            navigate('/');
-        }
-    }, [loading, error]);*/
 
     const renderEpiInputs = () => {
         return funcionario.epis.map((epi, index) => (
