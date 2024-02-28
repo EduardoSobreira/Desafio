@@ -45,3 +45,16 @@ export const postFuncionarios = (formulario) => {
             });
     };
 };
+
+export const putFuncionarios = (formulario) => {
+    return (dispatch) => {
+        dispatch(fetchFuncionariosRequest());
+        axios.put('http://localhost:3000/funcionario/' +  formulario['_id'], formulario)
+            .then(response => {
+                dispatch(fetchFuncionariosSuccess(response));
+            }).catch(error => {
+            const errorMsg = error.message;
+            dispatch(fetchFuncionariosFailure(errorMsg));
+        });
+    };
+};

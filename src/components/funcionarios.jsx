@@ -19,8 +19,17 @@ const FuncionariosComponent = () => {
 
     const callNewFuncionario = (e) => {
         e.preventDefault();
-        navigate('/cadastrar-funcionario');
+        navigate('/cadastrar-funcionario', {state: {
+            usaEpi: false,
+            atestadoSaude: null,
+            epis: [{atividade: '', tipoEpi: '', ca: ''}]
+        }});
     }
+
+    const editarFuncionario = (funcionario) => {
+        navigate('/cadastrar-funcionario'
+            , { state: funcionario });
+    };
 
     return (
         <Card
@@ -58,7 +67,7 @@ const FuncionariosComponent = () => {
                                 <Tag color="#4096ff">{funcionario.cargo}</Tag>
                             </Space>
                         </div>
-                        <div className={'m-l-auto p-1 custom-spread-div b-t-r-r b-b-r-r'}>...</div>
+                        <div onClick={() => editarFuncionario(funcionario)} className={'m-l-auto p-1 custom-spread-div b-t-r-r b-b-r-r'}>...</div>
                     </div>
                 );
             })}

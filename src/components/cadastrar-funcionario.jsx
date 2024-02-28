@@ -2,19 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Switch, Form, Input, Button, Checkbox, Select, Radio, Upload, Card, Space, Row, Col} from 'antd';
 import '../estilos/funcionario.css'
 import {ArrowLeftOutlined, UploadOutlined} from "@ant-design/icons";
-import {fetchFuncionarios, postFuncionarios} from "../actions/funcionarioActions.jsx";
+import {fetchFuncionarios, postFuncionarios, putFuncionarios} from "../actions/funcionarioActions.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
+import { useLocation } from "react-router-dom";
 
 const CadastrarFuncionarioComponent = () => {
+    const location = useLocation();
+    const receivedData = location.state;
+
     const [switchChecked, setSwitchChecked] = useState(false);
     const [checkboxChecked, setCheckboxChecked] = useState(false);
-    const [funcionario, setFuncionario] = useState({
-        usaEpi: false,
-        atestadoSaude: null,
-        epis: [{atividade: '', tipoEpi: '', ca: ''}]
-    });
+    const [funcionario, setFuncionario] = useState(receivedData);
     const [epi, setEpi] = useState([]);
     const dispatch = useDispatch();
     let navigate = useNavigate();
@@ -82,7 +82,11 @@ const CadastrarFuncionarioComponent = () => {
     };
 
     const salvarFuncionario = () => {
-        dispatch(postFuncionarios(funcionario));
+        if (funcionario['_id']) {
+            dispatch(putFuncionarios(funcionario));
+        } else {
+            dispatch(postFuncionarios(funcionario));
+        }
     }
 
     const handlerVoltar = () => {
